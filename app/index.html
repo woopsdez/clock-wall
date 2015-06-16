@@ -24,12 +24,12 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
-      <section class="temperature">
-        <span>00</span>°C
+    <div class="container app">
+      <section class="temperature fade out">
+        <span class="temp">00</span>°C
       </section>
       
-      <section class="clock">
+      <section class="clock" id="fittext">
         <div class="hours" id="hours">00</div>
         <div class="colon" id="colon">:</div>
         <div class="minutes" id="minutes">00</div>
@@ -40,6 +40,20 @@
         Presented by <span class="glyphicon glyphicon-heart"></span> The MarsKnowledge</div>
       </footer>
     </div>
+
+    <!-- drop area -->
+    <section class="drop-window none">
+      <div class="container">
+        <i class="fa fa-cloud-upload glyphicon-large"></i>
+        <h1>Drag & Drop Files</h1>
+        <p>or select files</p>
+        <div class="file-send">
+          <input type="file" class="btn btn-primary btn-block btn-lg" id="files" name="files[]">
+          <output id="list"></output>
+        </div>
+        <p class="muted">Upload File Size: 1MB</p>
+      </div>
+    </section>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -69,8 +83,8 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

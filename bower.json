@@ -8,7 +8,6 @@
   "devDependencies": {
     "chai": "~3.0.0",
     "mocha": "~2.2.5",
-    "fontawesome": "~4.3.0",
-    "FitText.js": "~1.2.0"
+    "fontawesome": "~4.3.0"
   }
 }

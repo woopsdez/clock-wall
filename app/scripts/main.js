@@ -102,8 +102,17 @@ function handleFileSelect(e){
 	reader.readAsDataURL(f);
 	reader.onload = function(e){
 		var imageURL = e.target.result;
-		console.log(imageURL);
-		$('body').css('background-image', 'url('+ imageURL +')');
+
+		// TODO
+		// スロット3つ用意
+		// 空いているスロットに画像を格納
+		// 全て埋まっている場合は古い順から
+
+		localStorage.upload = imageURL;
+		if (localStorage.upload !== null) {
+			console.log(localStorage.upload);
+			$('body').css('background-image', 'url('+ localStorage.upload +')');
+		}
 	};
 
 	handleDragLeave();
@@ -124,12 +133,29 @@ function handleDragOver(e){
 // Execution
 // -----------------
 
+setInterval(function(){
+  window.scrollTo(0, 1);
+},0);
+
+// text color change
+$('body').click(function(){
+	$(this).toggleClass('white');
+});
+// touch device
+$('body').on('touchend', function(){
+	$(this).toggleClass('white');
+});
+
+
 $.event.props.push('dataTransfer');
-$(window).on('dragenter', handleDragEnter);
-$(window).on('dragover', handleDragOver);
+$('.settings').on('tap', handleDragEnter);
+$('body').on('dragenter', handleDragEnter);
+$('body').on('dragover', handleDragOver);
 $('.drop-window').on('dragleave', handleDragLeave);
 $('.drop-window').on('dragend', handleDragLeave);
-$(window).on('drop', handleFileSelect);
+$('.drop-window').on('tap', handleDragLeave);
+$('.drop-window').on('drop', handleFileSelect);
+
 
 // get location
 if (navigator.geolocation) {
@@ -140,13 +166,6 @@ if (navigator.geolocation) {
   console.log(failedStr);
 }
 
-// $.ajax('http://lorempixel.com/400/200',);
-if(localStorage.itemName === null) {
-  console.log('ダメでした');
-} else {
-  console.log('大丈夫でした');
-}
-localStorage.itemName = 'ああああ';
-
-
+$('body').css('background-image', 'url('+ localStorage.upload +')');
 refleshTime();
+setInterval(refleshTime,1000);
